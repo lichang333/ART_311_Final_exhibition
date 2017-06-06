@@ -1,0 +1,144 @@
+<!-- page2.html-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>How-To Guide</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+<style>
+li {
+    margin-bottom: 10px;
+}
+
+</style>
+</head>
+<body>
+  
+<div class="container">
+  <div class="jumbotron">
+      <h2>How-To Guide: <small>USDA food Composition Databases</small></h2> 
+  </div>
+
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <div>
+      <ul class="nav navbar-nav">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="page1.html">Get Access</a></li>
+        <li class="active"><a href="page2.html">Request and Response</a></li>
+        <li><a href="page3.html">Parmeters and Elements</a></li>
+        <li><a href="page4.html">Examples</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>       
+    
+</div> 
+
+	<div class="row">
+	<div class='col-md-8 col-md-offset-1'>
+      <h2>Request and Response</h2>
+        <p>From the information card that we got on the previous section and <a href="https://ndb.nal.usda.gov/ndb/doc/apilist/API-SEARCH.md">USDA Food Composition Databases API search markdown</a>, now we know:</p>
+        
+        <h3>Part 1: Request</h3>
+        <ul>
+            <li>the Request address is:</li>
+            <pre>https://api.data.gov/nrel/alt-fuel-stations/v1/nearest.json?api_key=(Your API key)&location=Denver+CO</pre>
+            
+            <li>Request Method:</li>
+            <pre>GET</pre>
+            
+            <li>Request header:</li>
+            <pre>Content-Type: application/json</pre>
+            <p>OR</p>
+            <pre>Content-Type:application/xml</pre>
+        </ul>
+        
+        <h3>Part 2: Response</h3>
+        <ul>
+            <li>API key</li>
+            <pre>(The API key you got on your information card.)</pre>
+            <li>HTTP status</li>
+            <pre>It is not on the official document but generally:
+    200-300: Success
+    400-500: Client error
+    Greater than 500: Server error
+            </pre>
+            <li>Accept format</li>
+            <pre>XML</pre>
+            <p>and</p>
+            <pre>JSON</pre>
+        </ul>
+        
+        
+<h2>Example</h2>        
+<p>Here is a example to obtain the chedder cheese (ndbno 01009) report in XML format:</p>
+<pre>https://api.nal.usda.gov/ndb/reports/?ndbno=01009&type=b&format=xml&api_key=DEMO_KEY</pre>
+
+<p>Here is a example to obtain the chedder cheese (ndbno 01009) report in JSON format:</p>
+<pre>https://api.nal.usda.gov/ndb/reports/?ndbno=01009&type=b&format=json&api_key=DEMO_KEY</pre>
+<br><br><br>
+<p>Here also have an example, to illustrates how the list API works. The user will send a xml request about what type of the list they want to see and will receive a json file.
+    The response JSON will list all the item information with id and name elements.</p>
+
+<iframe width="100%" height="700" src="https://jsfiddle.net/cocoaluya/6z1gohjp/embedded/" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
+<br><br>        
+<p>Response json for "food" file:</p>
+<pre>
+        {
+    "list": {
+        "lt": "f",
+        "start": 0,
+        "end": 500,
+        "total": 500,
+        "sr": "28",
+        "sort": "id",
+        "item": [
+            {
+                "offset": 0,
+                "id": "01001",
+                "name": "Butter, salted"
+            },
+            {
+                "offset": 1,
+                "id": "01002",
+                "name": "Butter, whipped, with salt"
+            },
+            {
+                "offset": 2,
+                "id": "01003",
+                "name": "Butter oil, anhydrous"
+            },
+            {
+                "offset": 3,
+                "id": "01004",
+                "name": "Cheese, blue"
+            },
+...
+...
+            {
+                "offset": 499,
+                "id": "03293",
+                "name": "Babyfood, plums, bananas and rice, strained"
+            }
+        ]
+    }
+}
+</pre>        
+
+        
+    </div>
+    </div>
+    
+
+	<div class="container">                  
+  		<ul class="pager">
+    		<li class="previous"><a href="page1.html">Previous</a></li>
+    		<li class="next"><a href="page3.html">Next</a></li>
+  		</ul>
+	</div>
+</body>
+</html>

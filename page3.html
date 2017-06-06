@@ -1,0 +1,94 @@
+<!-- page2.html-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>How-To Guide</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+<style>
+li {
+    margin-bottom: 10px;
+}
+
+</style>
+</head>
+<body>
+  
+<div class="container">
+  <div class="jumbotron">
+      <h2>How-To Guide: <small>USDA food Composition Databases</small></h2> 
+  </div>
+
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <div>
+      <ul class="nav navbar-nav">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="page1.html">Get Access</a></li>
+        <li><a href="page2.html">Request and Response</a></li>
+        <li class="active"><a href="page3.html">Parmeters and Elements</a></li>
+        <li><a href="page4.html">Examples</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+    
+</div> 
+
+	<div class="row">
+	<div class='col-md-8 col-md-offset-1'>
+        
+        <h2>Parmeters and Elements</h2>
+        
+        <p>As you can see from the previous example, the JSON file give us:</p>
+        <pre>
+        "list": {
+        "lt": "f",
+        "start": 0,
+        "end": 500,
+        "total": 500,
+        "sr": "28",
+        "sort": "id",
+        "item": [
+            {
+                "offset": 0,
+                "id": "01001",
+                "name": "Butter, salted"
+            },
+...
+        ]
+    }
+        </pre>
+        <p>Thoes are called Response Element. Which is what the information the Server sent to you. Also, the parmeters that you sending to the server, called Request Parameters. You can find how to use that on the previous example.</p>
+        
+        
+          <p>Here is a official document sample to show what the API's Request parameters and Response Elements means:</p>
+        
+        <h4>Request Parameters</h4>
+        <img src = "imgs/request_parameters.png">
+        <br><br>
+        <h4>Response Elements</h4>
+        <img src = "imgs/response_elements.png">
+
+        
+<br><br><br>
+        
+        <p>You can also find the detail document about parmeters and element as following.</p>
+        <p>Note, There are 4 type of different API and their here is their official documents to talk about the meaning of request parameters and response elements: </p>
+        <p><a href="https://ndb.nal.usda.gov/ndb/doc/apilist/API-FOOD-REPORT.md">Food Reports</a>, <a href="https://ndb.nal.usda.gov/ndb/doc/apilist/API-NUTRIENT-REPORT.md">Nutrient Reports</a>, <a href="https://ndb.nal.usda.gov/ndb/doc/apilist/API-SEARCH.md">Search</a> and <a href="https://ndb.nal.usda.gov/ndb/doc/apilist/API-LIST.md">Lists</a>.</p>
+        
+    </div>
+    </div>
+    
+
+	<div class="container">                  
+  		<ul class="pager">
+    		<li class="previous"><a href="page1.html">Previous</a></li>
+    		<li class="next"><a href="page4.html">Next</a></li>
+  		</ul>
+	</div>
+</body>
+</html>

@@ -1,0 +1,329 @@
+<!-- page4.html-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>How-To Guide</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+  <script type="text/javascript">
+	$(document).ready(function(){
+    $(".scroll-area").scrollspy({target: "#myNavbar"}) 
+	});
+</script>
+<style type="text/css">
+.scroll-area {
+	height: 250px;
+	position: relative;
+	overflow: auto;
+}
+</style>
+<style>
+li {
+    margin-bottom: 10px;
+}
+pre {
+	color: FireBrick;
+}
+</style>
+</head>
+<body>
+  
+<div class="container">
+  <div class="jumbotron">
+    <h2>How-To Guide: <small>USDA food Composition Databases</small></h2> 
+  </div>
+
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <div>
+      <ul class="nav navbar-nav">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="page1.html">Get Access</a></li>
+        <li><a href="page2.html">Request and Response</a></li> 
+        <li><a href="page3.html">Parmeters and Elements</a></li> 
+        <li class="active"><a href="page4.html">Examples</a></li>            
+      </ul>
+    </div>
+  </div>
+</nav>
+
+</div> 
+
+	<div class="row">
+	<div class='col-md-8 col-md-offset-1'>
+        <h2>More Examples</h2>
+        <p>Now, we learned how to use the list API, which are one of the USDA food composition database APIs. But you might ask, how can I use the 3 rest of APIs(<a href="https://ndb.nal.usda.gov/ndb/doc/apilist/API-FOOD-REPORT.md">Food Reports</a>, <a href="https://ndb.nal.usda.gov/ndb/doc/apilist/API-NUTRIENT-REPORT.md">Nutrient Reports</a>, <a href="https://ndb.nal.usda.gov/ndb/doc/apilist/API-SEARCH.md">Search</a>)? </p>
+        <p>So, in this stage, I will an example for each of these perspectively.</p>
+        <h3>Example 1: Food Search</h3>
+            <p>This example is to show you how to use the <a href="https://ndb.nal.usda.gov/ndb/doc/apilist/API-SEARCH.md">food search API</a>. The user will input some key word text that they want to search and on the serverside will give them back all the results with a JSON file.</p>
+            <iframe width="100%" height="700" src="https://jsfiddle.net/cocoaluya/pw89eh36/embedded/" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
+            <p>Response JSON file in key word "banana":</p>
+        <pre>
+        {
+    "list": {
+        "q": "banana",              //Search terms
+        "sr": "28",                 //Standard Release version of the data being reported
+        "ds": "any",                //Data source: BL=Branded Food Products or SR=Standard Release
+        "start": 0,                 //beginning item in the list
+        "end": 25,                  //last item in the list
+        "total": 1056,              //total # of items returned by the search
+        "group": "",                //food group to which the food belongs
+        "sort": "r",                //requested sort order (r=relevance or n=name)
+        "item": [
+            {
+                "offset": 0,
+                "group": "Branded Food Products Database",
+                "name": "DIANA'S BANANAS, BANANA BABIES, FROZEN BANANA DIPPED IN DARK CHOCOLATE, UPC: 743490000135",
+                "ndbno": "45077066",
+                "ds": "BL"          //Data source: BL=Branded Food Products or SR=Standard Release
+            },
+            {
+                "offset": 1,
+                "group": "Branded Food Products Database",
+                "name": "DIANA'S BANANAS, BANANA BABIES, FROZEN BANANA DIPPED IN MILK CHOCOLATE, UPC: 743490000104",
+                "ndbno": "45077067",
+                "ds": "BL"
+            },
+            {
+                "offset": 2,
+                "group": "Branded Food Products Database",
+                "name": "MIKE AND IKE, MEGA MIX, CHEWY ASSORTED FRUIT FLAVORED CANDIES, CARIBBEAN, STRAWBERRY BANANA, PARADISE PUNCH, GRAPE SODA, KIWI BANANA, MANGO DELIGHT, WATERMELON, PINEAPPLE BANANA, PEACH BERRY, BLUE RASPBERRY, UPC: 070970473562",
+                "ndbno": "45091729",
+                "ds": "BL"
+            },
+....
+....
+            {
+                "offset": 24,
+                "group": "Branded Food Products Database",
+                "name": "MCCORMICK, PRODUCE PARTNERS, BANANA SMOOTHIE MIX, BANANA, UPC: 070528009021",
+                "ndbno": "45118043",
+                "ds": "BL"
+            }
+        ]
+    }
+}       
+        </pre>
+        
+        <h3>Example 2: Food Report</h3>
+            <p>The <a href="https://ndb.nal.usda.gov/ndb/doc/apilist/API-FOOD-REPORT.md">Food Reports</a> API is for give a report for a specific food. To lookup the specific food report, you need to know their ndbno.Then, you will get a response JSON file with the food detail information such like name, report date and nutrient content for detail.</p>
+            <iframe width="100%" height="700" src="https://jsfiddle.net/cocoaluya/v7qhdws8/embedded/" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
+            
+        <p>Response JSON file in key word "45029957":</p>
+        <pre>
+        {
+    "report": {
+        "sr": "January, 2017",  //Release version of the data being reported
+        "type": "Basic",        //Report type: [b]asic or [f]ull or [s]tats
+        "food": {
+            "ndbno": "45029957",
+            "name": "SHOPRITE, APPLE SAUCE GRAB & GO POUCHES, APPLE BANANA, UPC: 041190052677",
+            "ds": "Branded Food Products",      //database source: 'Branded Food Products' or 'Standard Reference'
+            "ru": "g",                          //reporting unit
+            "ing": {                            //ingredients (Branded Food Products report only)
+                "desc": "APPLES, BANANA PUREE, APPLE JUICE CONCENTRATE, WATER, LEMON JUICE CONCENTRATE.",
+                "upd": "07/18/2015"
+            },
+            "nutrients": [
+                {
+                    "nutrient_id": "208",
+                    "name": "Energy",
+                    "group": "Proximates",
+                    "unit": "kcal",
+                    "value": "67",
+                    "measures": [
+                        {
+                            "label": "oz",
+                            "eqv": 90.0,            //equivalent of the measure expressed as an eunit
+                            "eunit": "g",
+                            "qty": 3.2,
+                            "value": "60"
+                        }
+                    ]
+                },
+                {
+                    "nutrient_id": "203",
+                    "name": "Protein",
+                    "group": "Proximates",
+                    "unit": "g",
+                    "value": "0.00",
+                    "measures": [
+                        {
+                            "label": "oz",
+                            "eqv": 90.0,
+                            "eunit": "g",
+                            "qty": 3.2,
+                            "value": "0.00"
+                        }
+                    ]
+                },
+                {
+                    "nutrient_id": "204",
+                    "name": "Total lipid (fat)",
+                    "group": "Proximates",
+                    "unit": "g",
+                    "value": "0.00",
+                    "measures": [
+                        {
+                            "label": "oz",
+                            "eqv": 90.0,
+                            "eunit": "g",
+                            "qty": 3.2,
+                            "value": "0.00"
+                        }
+                    ]
+                },
+                {
+                    "nutrient_id": "205",
+                    "name": "Carbohydrate, by difference",
+                    "group": "Proximates",
+                    "unit": "g",
+                    "value": "16.67",
+                    "measures": [
+                        {
+                            "label": "oz",
+                            "eqv": 90.0,
+                            "eunit": "g",
+                            "qty": 3.2,
+                            "value": "15.00"
+                        }
+                    ]
+                },
+                {
+                    "nutrient_id": "291",
+                    "name": "Fiber, total dietary",
+                    "group": "Proximates",
+                    "unit": "g",
+                    "value": "1.1",
+                    "measures": [
+                        {
+                            "label": "oz",
+                            "eqv": 90.0,
+                            "eunit": "g",
+                            "qty": 3.2,
+                            "value": "1.0"
+                        }
+                    ]
+                },
+                {
+                    "nutrient_id": "269",
+                    "name": "Sugars, total",
+                    "group": "Proximates",
+                    "unit": "g",
+                    "value": "12.22",
+                    "measures": [
+                        {
+                            "label": "oz",
+                            "eqv": 90.0,
+                            "eunit": "g",
+                            "qty": 3.2,
+                            "value": "11.00"
+                        }
+                    ]
+                },
+                {
+                    "nutrient_id": "307",
+                    "name": "Sodium, Na",
+                    "group": "Minerals",
+                    "unit": "mg",
+                    "value": "0",
+                    "measures": [
+                        {
+                            "label": "oz",
+                            "eqv": 90.0,
+                            "eunit": "g",
+                            "qty": 3.2,
+                            "value": "0"
+                        }
+                    ]
+                },
+                {
+                    "nutrient_id": "606",
+                    "name": "Fatty acids, total saturated",
+                    "group": "Lipids",
+                    "unit": "g",
+                    "value": "0.00",
+                    "measures": [
+                        {
+                            "label": "oz",
+                            "eqv": 90.0,
+                            "eunit": "g",
+                            "qty": 3.2,
+                            "value": "0.00"
+                        }
+                    ]
+                },
+                {
+                    "nutrient_id": "605",
+                    "name": "Fatty acids, total trans",
+                    "group": "Lipids",
+                    "unit": "g",
+                    "value": "0.00",
+                    "measures": [
+                        {
+                            "label": "oz",
+                            "eqv": 90.0,
+                            "eunit": "g",
+                            "qty": 3.2,
+                            "value": "0.00"
+                        }
+                    ]
+                }
+            ]
+        },
+        "footnotes": [
+            
+        ]
+    }
+}
+        </pre>
+        <h3>Example 3: Nutirient Report</h3>
+        <p>This API is similar to the Food Report API, but this API is more narrow and only get the information for a food's specific nutrient. For example, if I want to know how many Vitamin D3 (the nutrient ID for Vitamin D3 is 326) in a baby food ndbno"03084", I don't need to use Food report API to get the whole nutrient content information. That is very redundant and useless. In constract, The only two things that care about the the product basic information and how much Vitamin D3 in it. So, this API will be really good for that situation.</p>
+        
+        
+        <iframe width="100%" height="700" src="https://jsfiddle.net/cocoaluya/t7ksxm4n/1/embedded/" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
+
+        
+        <p>Response JSON file in key word "326"(nbno) and "03084"(ndbno) :</p>
+        <pre>
+        {
+    "report": {
+        "sr": "28",                //Standard Release version of the data being reported
+        "groups": "All groups",    //If applicable, the list of food groups used to filter the report
+        "subset": "All foods",     //The name of the subset of foods in the response or all foods
+        "end": 1,                  //The number of the last item in the reports -- normally start + max.
+        "start": 0,                //Value of the offset parameter used in the report
+        "total": 1,                //The total number of items available in the reports. Useful for paging the report.
+        "foods": [                 //food name
+            {
+                "ndbno": "03084",
+                "name": "Babyfood, dinner, vegetables and turkey, strained",
+                "weight": 256.0,
+                "measure": "1.0 cup",
+                "nutrients": [
+                    {
+                        "nutrient_id": "326",
+                        "nutrient": "Vitamin D3 (cholecalciferol)",
+                        "unit": "\u00b5g",
+                        "value": "0.0",
+                        "gm": 0.0   //The 100 gram equivalent value for the nutrient
+                    }
+                ]
+            }
+        ]
+    }
+}
+        </pre>
+      <br>
+
+	<div class="container">                  
+  		<ul class="pager">
+    		<li class="previous"><a href="page3.html">Previous</a></li>
+  		</ul>
+	</div>
+</body>
+</html>
+  
